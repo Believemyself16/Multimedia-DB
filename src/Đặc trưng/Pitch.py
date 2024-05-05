@@ -1,13 +1,13 @@
 # Tính toán cao độ Pitch của file âm thanh
 
 import numpy as np
-from aubio import source
+from aubio import source, pitch
 
 
 def funcPitch(path, pitch):
     win_s = 4096 #kích thước của sổ FFT
     hop_s = 512 #kích thước bước nhảy giữa các cửa sổ
-    samplerate = 44100 #tần số lấy mẫu
+    samplerate = 16000 #tần số lấy mẫu
     
     #tạo đối tượng âm thanh
     s = source(path, samplerate, hop_s)
