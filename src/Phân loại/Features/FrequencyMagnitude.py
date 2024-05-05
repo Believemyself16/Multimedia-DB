@@ -1,14 +1,11 @@
-#frequency magnitude xác định độ lớn của các thành phần tần số trong âm thanh
+# Đặc trưng: phổ âm thanh, phân bố năng lượng âm thanh
+# frequency magnitude xác định độ lớn của các thành phần tần số trong âm thanh
 
 import os
 import matplotlib.pyplot as plt
 import librosa, librosa.display
 import IPython.display as ipd
 import numpy as np
-
-# Mảng X_mag trả về một mảng bao gồm: 
-# Giá trị của phần tử = giá trị magnitude, 
-# vị trí của phần tử đó = hz tương ứng => Dùng 2 mảng để lưu lại 2 giá trị đó
 
 def funcFrequencyMagnitude(path):
     file, sr = librosa.load(path, duration = 6) #load file âm thanh vào librosa
