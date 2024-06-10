@@ -1,11 +1,10 @@
+# xóa file uploads trước khi chạy
 from flask import Flask, render_template, request, redirect, url_for
 import os
-import librosa
 import numpy as np
 import pandas as pd
 from scipy.spatial.distance import euclidean
-from pydub import AudioSegment
-from IPython.display import Audio, display
+from feature_extraction import extract_features
 
 app = Flask(__name__)
 
@@ -27,13 +26,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 if not os.path.exists(UPLOAD_FOLDER):
     os.chdir(r"C:\Users\Asus\OneDrive - m2xk\Desktop\Multimedia-DB\src\App\static")
     os.makedirs(UPLOAD_FOLDER)
-
-# Hàm trích xuất đặc trưng MFCC từ tệp âm thanh
-def extract_features(file_path, n_mfcc=13):
-    y, sr = librosa.load(file_path, sr=None)
-    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
-    mfcc_mean = np.mean(mfcc, axis=1)
-    return mfcc_mean
 
 # Tính toán khoảng cách Euclidean giữa tệp đầu vào và từng tệp trong DataFrame
 def calculate_distances(input_features, features_df, database_folder):
